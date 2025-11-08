@@ -21,7 +21,7 @@ public class Rate {
         if (normalRate.compareTo(BigDecimal.ZERO) < 0 || reducedRate.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("A rate cannot be negative");
         }
-        if (normalRate.compareTo(reducedRate) <= 0) {
+        if (normalRate.compareTo(reducedRate) < 0) {
             throw new IllegalArgumentException("The normal rate cannot be less or equal to the reduced rate");
         }
         if (!isValidPeriods(reducedPeriods) || !isValidPeriods(normalPeriods)) {
@@ -30,6 +30,10 @@ public class Rate {
         if (!isValidPeriods(reducedPeriods, normalPeriods)) {
             throw new IllegalArgumentException("The periods overlaps");
         }
+        if(normalRate.compareTo(BigDecimal.TEN) > 0 || reducedRate.compareTo(BigDecimal.TEN) > 0) {
+            throw new IllegalArgumentException("A rate cannot be greater than 10");
+        }
+
         this.kind = kind;
         this.hourlyNormalRate = normalRate;
         this.hourlyReducedRate = reducedRate;
