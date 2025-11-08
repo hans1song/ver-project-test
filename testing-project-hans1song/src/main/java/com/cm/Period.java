@@ -60,6 +60,9 @@ public class Period {
     }
 
     public boolean overlaps(Period period) {
+        if (period == null) {
+            throw new IllegalArgumentException("period cannot be null");
+        }
         return this.endHour>period.startHour && this.startHour<period.endHour;
     }
 }
