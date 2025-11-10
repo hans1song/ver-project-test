@@ -178,15 +178,15 @@ public class TestMeudecChrisTask1 {
 
     @Test
     public void rate_constructor_nullKindThrows() {
-        assertThrows(NullPointerException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new Rate(null, new ArrayList<>(), new ArrayList<>(), new BigDecimal("1.00"), new BigDecimal("1.00")));
     }
 
     @Test
     public void rate_constructor_nullRatesThrow() {
-        assertThrows(NullPointerException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new Rate(CarParkKind.STAFF, new ArrayList<>(), new ArrayList<>(), null, new BigDecimal("1.00")));
-        assertThrows(NullPointerException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new Rate(CarParkKind.STAFF, new ArrayList<>(), new ArrayList<>(), new BigDecimal("1.00"), null));
     }
 
