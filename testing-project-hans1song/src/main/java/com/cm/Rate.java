@@ -98,8 +98,16 @@ public class Rate {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
         if (this.kind==CarParkKind.VISITOR) return BigDecimal.valueOf(0);
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+       BigDecimal normalCost = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours));
+    
+    // 2. 计算优惠费用（不要舍入）
+    BigDecimal reducedCost = this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours));
+
+    // 3. 计算总费用
+    BigDecimal totalCost = normalCost.add(reducedCost);
+    
+    // 4. 仅对最终的总费用进行舍入，以符合规范 
+    return totalCost.setScale(2, java.math.RoundingMode.HALF_UP);
     }
     // 测试
 }
