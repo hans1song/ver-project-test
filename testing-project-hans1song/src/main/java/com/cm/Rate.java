@@ -101,5 +101,5 @@ public class Rate {
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
     }
-
+    // 测试
 }
